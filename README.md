@@ -17,6 +17,7 @@ Display the captured image.
 Apply YOLOv8 object detection.
 Display the detected image with bounding boxes and labels.
 ## Algorithm
+```
 Laptop Camera
       ↓
 Capture Image
@@ -26,6 +27,7 @@ Display Image
 YOLOv8 Detection
       ↓
 Display Detected Objects
+```
 Student Task
 Capture your own image using the laptop camera.
 Detect the objects present in the image.
