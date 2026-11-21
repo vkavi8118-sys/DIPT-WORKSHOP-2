@@ -42,3 +42,50 @@ GitHub Reference
 https://github.com/ultralytics/ultralytics
 
 Platform: Anaconda + Jupyter Notebook only.
+
+## program
+```from ultralytics import YOLO
+import cv2
+import matplotlib.pyplot as plt
+from IPython.display import clear_output
+
+# Load YOLO model
+model = YOLO("yolov8m.pt")
+
+# Open webcam
+cap = cv2.VideoCapture(0)
+
+# Check if camera opened
+if not cap.isOpened():
+    print("Error: Could not open webcam.")
+else:
+    while True:
+        ret, frame = cap.read()
+
+        if not ret:
+            print("Failed to capture frame.")
+            break
+
+        # Perform object detection
+        results = model(frame, conf=0.60, verbose=False)
+
+        # Draw bounding boxes and labels
+        annotated_frame = results[0].plot()
+
+        # Convert BGR to RGB
+        annotated_frame = cv2.cvtColor(annotated_frame, cv2.COLOR_BGR2RGB)
+
+        # Display in Jupyter
+        clear_output(wait=True)
+        plt.figure(figsize=(10, 8))
+        plt.imshow(annotated_frame)
+        plt.title("Real-Time Object Detection")
+        plt.axis("off")
+        plt.show()
+
+# Release webcam
+cap.release()
+cv2.destroyAllWindows()
+```
+## Output
+<img width="897" height="702" alt="Screenshot 2026-11-21 102201" src="https://github.com/user-attachments/assets/3ba0b17f-a7e0-426c-b62c-18cb0596cf96" />
